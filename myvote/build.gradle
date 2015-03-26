@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+	    maven { url "http://repo.spring.io/release" }
+            mavenCentral()
+	    mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'myvote'
+    version =  '0.1.0'
+}
+
+bootRepackage {
+    mainClass = 'org.gradle.MyVoteConfig'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/release" }
+ }
+ 
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE")
+    compile("org.glassfish.jersey.ext:jersey-bean-validation:2.16")
+    compile 'org.springframework.security:spring-security-config:3.2.5.RELEASE'
+    compile ("org.springframework.security:spring-security-web:3.2.5.RELEASE")
+  
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
